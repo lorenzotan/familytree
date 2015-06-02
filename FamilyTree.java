@@ -1,7 +1,10 @@
 import person.Person;
 import dbi.DBI;
 //import relationship.Relationship;
-import java.util.HashMap;
+import java.util.*;
+//import java.util.ArrayList;
+//import java.util.HashMap;
+//import java.util.Set;
 
 public class FamilyTree {
     String FirstName;
@@ -18,14 +21,39 @@ public class FamilyTree {
      * search tree based on reference (parents, kids, grandkids, cousins, etc)
      */
     public static void main (String[] args) {
-        //HashMap<Person> person = new HashMap<Person>();
+        HashMap<Integer, Person> people = new HashMap<>();
+        //ArrayList<Person> people = new ArrayList<>();
 
         Person person = new Person();
+        Person dne = null;
 
         DBI connect = new DBI();
-        connect.getData();
-        
-    }
+        people = connect.getData();
 
-    //private static Person 
+        /* for ArrayList
+        for (int i = 0; i < people.size(); i++) {
+            person = people.get(i);
+            System.out.println("Name: " + person.firstName);
+        }
+        */
+        Set<Integer> keys = people.keySet();
+        for (Integer key : keys) {
+            people.get(key).father = people.containsKey(people.get(key).fatherId) ? people.get(people.get(key).fatherId) : null;
+            people.get(key).mother = people.containsKey(people.get(key).motherId) ? people.get(people.get(key).motherId) : null;
+
+            System.out.println("Name: " + people.get(key).firstName);
+
+            if (people.get(people.get(key).fatherId) != null) {
+                System.out.println("Dad: " + people.get(key).father.firstName);
+            } else {
+                System.out.println("Dad: Currently Unavailable");
+            }
+
+            if (people.get(people.get(key).motherId) != null) {
+                System.out.println("Mom: " + people.get(key).mother.firstName);
+            } else {
+                System.out.println("Mom: Currently Unavailable");
+            }
+        }
+    }
 }
