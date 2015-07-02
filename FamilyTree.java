@@ -19,6 +19,7 @@ public class FamilyTree {
      * output tree
      * set a point of reference
      * search tree based on reference (parents, kids, grandkids, cousins, etc)
+     * add/edit family member data
      */
     public static void main (String[] args) {
         HashMap<Integer, Person> people = new HashMap<>();
@@ -55,5 +56,9 @@ public class FamilyTree {
                 System.out.println("Mom: Currently Unavailable");
             }
         }
+    }
+
+    public static void printTree() {
+        
     }
 }
