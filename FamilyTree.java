@@ -22,21 +22,27 @@ public class FamilyTree {
      * add/edit family member data
      */
     public static void main (String[] args) {
-        HashMap<Integer, Person> people = new HashMap<>();
-        //ArrayList<Person> people = new ArrayList<>();
+        //printTree();
+        addPerson();
+    }
 
-        Person person = new Person();
-        Person dne = null;
+    public static void addPerson() {
+        Person relative = new Person();
+        //relative.id = 
+        relative.firstName = "Edwina";
+        relative.lastName  = "Tan";
+        relative.fatherId  = 1;
+        relative.motherId  = 2;
+        DBI connect = new DBI();
+        connect.addRelative(relative);
+    }
+
+    public static void printTree() {
+        HashMap<Integer, Person> people = new HashMap<>();
 
         DBI connect = new DBI();
         people = connect.getData();
 
-        /* for ArrayList
-        for (int i = 0; i < people.size(); i++) {
-            person = people.get(i);
-            System.out.println("Name: " + person.firstName);
-        }
-        */
         Set<Integer> keys = people.keySet();
         for (Integer key : keys) {
             people.get(key).father = people.containsKey(people.get(key).fatherId) ? people.get(people.get(key).fatherId) : null;
@@ -45,20 +51,16 @@ public class FamilyTree {
             System.out.println("Name: " + people.get(key).firstName);
 
             if (people.get(people.get(key).fatherId) != null) {
-                System.out.println("Dad: " + people.get(key).father.firstName);
+                System.out.println("\tDad: " + people.get(key).father.firstName);
             } else {
-                System.out.println("Dad: Currently Unavailable");
+                System.out.println("\tDad: Currently Unavailable");
             }
 
             if (people.get(people.get(key).motherId) != null) {
-                System.out.println("Mom: " + people.get(key).mother.firstName);
+                System.out.println("\tMom: " + people.get(key).mother.firstName);
             } else {
-                System.out.println("Mom: Currently Unavailable");
+                System.out.println("\tMom: Currently Unavailable");
             }
         }
-    }
-
-    public static void printTree() {
-        
     }
 }
