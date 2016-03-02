@@ -22,8 +22,8 @@ public class FamilyTree {
      * add/edit family member data
      */
     public static void main (String[] args) {
-        //printTree();
-        addPerson();
+        printTree();
+        //addPerson();
     }
 
     public static void addPerson() {

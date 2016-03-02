@@ -11,8 +11,9 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import person.Person;
+import idbi.IDBI;
 
-public class DBI {
+public class DBI implements IDBI {
     private static final String JDBC_DRIVER = "org.postgresql.Driver";
     private static final String DB_URL      = "jdbc:postgresql://localhost:5432/familytree";
     private static final String USER        = "historian";
