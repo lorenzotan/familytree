@@ -1,4 +1,5 @@
 import person.Person;
+import idbi.IDBI;
 import dbi.DBI;
 //import relationship.Relationship;
 import java.util.*;
@@ -33,14 +34,14 @@ public class FamilyTree {
         relative.lastName  = "Tan";
         relative.fatherId  = 1;
         relative.motherId  = 2;
-        DBI connect = new DBI();
+        IDBI connect = new DBI();
         connect.addRelative(relative);
     }
 
     public static void printTree() {
         HashMap<Integer, Person> people = new HashMap<>();
 
-        DBI connect = new DBI();
+        IDBI connect = new DBI();
         people = connect.getData();
 
         Set<Integer> keys = people.keySet();
